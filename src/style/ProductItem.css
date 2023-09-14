@@ -5,6 +5,7 @@
   padding: 2rem;
   background-color: white;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .product-title {
