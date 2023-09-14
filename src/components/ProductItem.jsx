@@ -34,7 +34,7 @@ function ProductItem({ product }) {
       </div>
       {/* <p>{product.description}</p> */}
       <div className="buttons">
-        <button className="add-to-cart-btn" onClick={() => {}}>
+        <button className="simple-button" onClick={() => {}}>
           Add to Cart
         </button>
       </div>

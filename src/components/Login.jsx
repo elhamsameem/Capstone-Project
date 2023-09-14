@@ -5,6 +5,7 @@ import "../style/Login.css";
 import { loginUser } from "../api/api";
 
 function Login({ token, setToken }) {
+  const [err, setErr] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -13,11 +14,13 @@ function Login({ token, setToken }) {
     try {
       // Calling api helper to login user
       const response = await loginUser(username, password);
+      response && setErr(null);
       response && localStorage.setItem("capstone-token", response.token);
       setToken(response.token);
       navigate("/");
     } catch (error) {
       console.error(error);
+      setErr("Wrong username or password. Please try again");
     }
   };
 
@@ -29,29 +32,44 @@ function Login({ token, setToken }) {
 
   return (
     <div className="login-container">
-      <form>
-        <div>
+      <form className="login-form">
+        <h2>Sign in</h2>
+        <div className="login-inputs">
           <label>Username:</label>
           <input
+            placeholder="johnd"
             type="text"
             name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div>
+        <div className="login-inputs">
           <label>Password:</label>
           <input
+            placeholder="m38rmF$"
             type="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <div className="buttons">
+          <button type="button" className="simple-button" onClick={handleLogin}>
+            Login
+          </button>
+        </div>
       </form>
+      {err && (
+        <div className="message-box">
+          <p>{err}</p>
+        </div>
+      )}
+      <div className="register-div">
+        <p>
+          Don't have an account? <a href="/register">Register</a> here
+        </p>
+      </div>
     </div>
   );
 }
