@@ -1,0 +1,31 @@
+.nav-bar-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgba(155, 155, 160, 0.287);
+}
+
+.nav-links-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 2pt solid black; */
+  /* margin-right: 4rem; */
+}
+
+.nav-links-div a {
+  font-size: larger;
+  font-weight: 600;
+  padding: 15px 15px;
+  margin-right: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-links-div a:hover,
+.active {
+  box-shadow: 0 0 10px white;
+  border-radius: 5px;
+  background-color: rgba(155, 155, 160, 0.633);
+}
