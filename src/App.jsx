@@ -11,6 +11,7 @@ import { fetchAllProducts } from "./API/api.js";
 function App() {
   const [products, setProducts] = useState(null);
 
+  // Fetching all products in app level component
   useEffect(() => {
     async function getAllProducts() {
       const result = await fetchAllProducts();
@@ -18,18 +19,21 @@ function App() {
     }
     getAllProducts();
   }, []);
+
   console.log(products);
 
   return (
     <>
       <NavBar />
       <div className="canvas">
-        <Routes>
-          <Route path="/" element={<Home products={products} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        <div className="canvas-div">
+          <Routes>
+            <Route path="/" element={<Home products={products} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
       </div>
     </>
   );

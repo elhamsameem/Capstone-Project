@@ -1,7 +1,37 @@
 .all-products-div {
   padding: 2rem;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
+}
+
+.search-div {
+  margin-top: 1rem;
+}
+
+#search-product-input {
+  padding: 0.3rem;
+  margin-left: 0.3rem;
+  box-shadow: 0 0 10px rgba(155, 155, 160, 0.778);
+  border: none;
+
+}
+
+
+.category {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.cat-button {
+  width: 6rem;
+  padding: 0.4rem;
+}
+
+h1 {
+  margin-top: 1rem;
 }

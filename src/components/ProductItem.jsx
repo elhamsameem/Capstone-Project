@@ -6,25 +6,37 @@ function ProductItem({ product }) {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="product-div"
-      onClick={() => {
-        navigate(`/products/${product.id}`);
-      }}
-      title="View Product"
-    >
-      <div className="product-title">
-        <h3>{product.title}</h3>
-        <h2 className="product-price">${product.price}</h2>
+    <div className="product-div">
+      <div
+        className="product-img-div"
+        onClick={() => {
+          navigate(`/products/${product.id}`);
+        }}
+        title="View Product"
+      >
+        <img className="product-img" src={`${product.image}`}></img>
       </div>
-      <p>{product.description}</p>
+      <div className="product-title">
+        <h3
+          onClick={() => {
+            navigate(`/products/${product.id}`);
+          }}
+          title="View Product"
+        >
+          {product.title.substring(0, 15)}...
+        </h3>
+        <h4 className="product-price">${product.price}</h4>
+      </div>
       <div className="rating-div">
         <p>
-          Rating: {product.rating.rate} ⭐️ ({product.rating.count})
+          {product.rating.rate} ⭐️ ({product.rating.count})
         </p>
       </div>
-      <div className="product-img-div">
-        <img className="product-img" src={`${product.image}`}></img>
+      {/* <p>{product.description}</p> */}
+      <div className="buttons">
+        <button className="add-to-cart-btn" onClick={() => {}}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );
