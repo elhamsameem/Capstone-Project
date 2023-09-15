@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../style/Login.css";
 import { loginUser } from "../api/api";
 
@@ -67,7 +67,7 @@ function Login({ token, setToken }) {
       )}
       <div className="register-div">
         <p>
-          Don't have an account? <a href="/register">Register</a> here
+          Don't have an account? <Link to={"/register"}>Register</Link> here
         </p>
       </div>
     </div>

@@ -15,7 +15,6 @@ function NavBar({ token, setToken, handleLogout }) {
         ) : (
           <NavLink to={"/login"}>Login</NavLink>
         )}
-        <NavLink to={"/register"}>Register</NavLink>
         <NavLink to={"/cart"}>My Cart</NavLink>
       </div>
     </div>

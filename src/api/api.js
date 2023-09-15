@@ -31,3 +31,23 @@ export async function loginUser(username, password) {
     console.error("Error Login: ", error);
   }
 }
+
+// Register user function
+export async function registerUser(newUser) {
+  try {
+    const response = await fetch(`${API_URL}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error Register User: ", error);
+  }
+}
+
