@@ -1,5 +1,6 @@
 .all-products-div {
-  padding: 2rem;
+  /* padding: 1rem; */
+  margin-bottom: 3rem;
   display: flex;
   flex-wrap: wrap;
   /* flex-direction: column; */
@@ -7,8 +8,20 @@
   align-items: center;
 }
 
+.cat-title {
+  margin-bottom: 1.5rem;
+}
+
+.filter-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .search-div {
-  margin-top: 1rem;
+  width: fit-content;
+  align-items: center;
 }
 
 #search-product-input {
@@ -16,10 +29,10 @@
   margin-left: 0.3rem;
   box-shadow: 0 0 10px rgba(155, 155, 160, 0.778);
   border: none;
+  width: 15rem;
 }
 
 .category {
-  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   width: 530px;
@@ -40,10 +53,6 @@
   cursor: pointer;
 }
 
-.cat-title {
-  margin-top: 2rem;
-}
-
 .loading {
-  margin-top: 5rem;
+  margin: 2rem;
 }
