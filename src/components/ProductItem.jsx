@@ -21,7 +21,7 @@ function ProductItem({ product }) {
           onClick={() => {
             navigate(`/products/${product.id}`);
           }}
-          title="View Product"
+          title={product.title}
         >
           {product.title.substring(0, 15)}...
         </h3>

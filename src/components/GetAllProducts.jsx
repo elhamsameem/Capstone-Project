@@ -4,10 +4,23 @@ import "../style/GetAllProducts.css";
 import ProductItem from "./ProductItem";
 
 function GetAllProducts({ products }) {
-  const [category, setCategory] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchedProduct, setSearchedProduct] = useState([]);
+  const [category, setCategory] = useState("all");
+  const [searchedProduct, setSearchedProduct] = useState("");
   const [titleText, setTitleText] = useState("All Products");
+
+  // Filtering products based on category selection
+  const filteredCategory = products
+    ? category === "all" // if category is all then return products
+      ? products
+      : products.filter((product) => product.category === category)
+    : [];
+
+  // Filtering filtered category products by search bar text.
+  const filteredProducts = filteredCategory.filter((product) =>
+    product.title.toLowerCase().includes(searchedProduct.toLowerCase())
+  );
+
+  console.log(filteredProducts);
 
   return (
     <>
@@ -20,20 +33,26 @@ function GetAllProducts({ products }) {
           id="search-product-input"
           name="search-product-input"
           placeholder=" Anything"
+          value={searchedProduct}
+          onChange={(e) => {
+            setSearchedProduct(e.target.value);
+          }}
         />
       </div>
       <div className="category">
         <button
-          className="cat-button"
+          className={`cat-button ${category === "all" ? "active-button" : ""}`}
           onClick={() => {
             setTitleText("All Products");
-            setCategory("");
+            setCategory("all");
           }}
         >
           All
         </button>
         <button
-          className="cat-button"
+          className={`cat-button ${
+            category === "men's clothing" ? "active-button" : ""
+          }`}
           onClick={() => {
             setTitleText("Men's");
             setCategory(`men's clothing`);
@@ -42,7 +61,9 @@ function GetAllProducts({ products }) {
           Men
         </button>
         <button
-          className="cat-button"
+          className={`cat-button ${
+            category === "women's clothing" ? "active-button" : ""
+          }`}
           onClick={() => {
             setTitleText("Women's");
             setCategory(`women's clothing`);
@@ -51,7 +72,9 @@ function GetAllProducts({ products }) {
           Women
         </button>
         <button
-          className="cat-button"
+          className={`cat-button ${
+            category === "jewelery" ? "active-button" : ""
+          }`}
           onClick={() => {
             setTitleText("Jewelery");
             setCategory(`jewelery`);
@@ -60,7 +83,9 @@ function GetAllProducts({ products }) {
           Jewelery
         </button>
         <button
-          className="cat-button"
+          className={`cat-button ${
+            category === "electronics" ? "active-button" : ""
+          }`}
           onClick={() => {
             setTitleText("Electronics");
             setCategory(`electronics`);
@@ -69,12 +94,15 @@ function GetAllProducts({ products }) {
           Electronics
         </button>
       </div>
-      <h1>{titleText}</h1>
+      <h1 className="cat-title">{titleText}</h1>
       <div className="all-products-div">
-        {products &&
-          products.map((product) => {
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => {
             return <ProductItem key={product.id} product={product} />;
-          })}
+          })
+        ) : (
+          <h1>Out of inventory</h1>
+        )}
       </div>
     </>
   );

@@ -22,14 +22,24 @@
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
-  width: 500px;
+  width: 530px;
 }
 
 .cat-button {
   width: 6rem;
   padding: 0.4rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(155, 155, 160, 0.778);
+  transition: all 0.2s ease;
 }
 
-h1 {
-  margin-top: 1rem;
+.cat-button:hover,
+.active-button {
+  background-color: rgba(155, 155, 160, 0.633);
+  cursor: pointer;
+}
+
+.cat-title {
+  margin-top: 2rem;
 }

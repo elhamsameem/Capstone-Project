@@ -28,4 +28,5 @@
   box-shadow: 0 0 10px white;
   border-radius: 5px;
   background-color: rgba(155, 155, 160, 0.633);
+  transition: all 0.2s ease;
 }
