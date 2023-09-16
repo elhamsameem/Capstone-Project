@@ -8,19 +8,23 @@ function Login({ token, setToken }) {
   const [err, setErr] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       // Calling api helper to login user
       const response = await loginUser(username, password);
       response && setErr(null);
       response && localStorage.setItem("capstone-token", response.token);
       setToken(response.token);
+      setLoading(false);
       navigate("/");
     } catch (error) {
       console.error(error);
       setErr("Wrong username or password. Please try again");
+      setLoading(false);
     }
   };
 
@@ -60,10 +64,14 @@ function Login({ token, setToken }) {
           </button>
         </div>
       </form>
-      {err && (
-        <div className="message-box">
-          <p>{err}</p>
-        </div>
+      {loading ? (
+        <h3 className="loading">Authenticating, Please Wait....</h3>
+      ) : (
+        err && (
+          <div className="message-box">
+            <p>{err}</p>
+          </div>
+        )
       )}
       <div className="register-div">
         <p>
