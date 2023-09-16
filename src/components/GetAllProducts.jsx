@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "../style/GetAllProducts.css";
 import ProductItem from "./ProductItem";
 
-function GetAllProducts({ products }) {
+function GetAllProducts({ products, loading }) {
   const [category, setCategory] = useState("all");
   const [searchedProduct, setSearchedProduct] = useState("");
   const [titleText, setTitleText] = useState("All Products");
@@ -95,15 +95,19 @@ function GetAllProducts({ products }) {
         </button>
       </div>
       <h1 className="cat-title">{titleText}</h1>
-      <div className="all-products-div">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => {
-            return <ProductItem key={product.id} product={product} />;
-          })
-        ) : (
-          <h1>Out of inventory</h1>
-        )}
-      </div>
+      {loading ? (
+        <h3 className="loading">Loading...</h3>
+      ) : (
+        <div className="all-products-div">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => {
+              return <ProductItem key={product.id} product={product} />;
+            })
+          ) : (
+            <h1>Out of inventory</h1>
+          )}
+        </div>
+      )}
     </>
   );
 }

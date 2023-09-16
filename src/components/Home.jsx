@@ -2,10 +2,10 @@ import React from "react";
 import "../style/Home.css";
 import GetAllProducts from "./GetAllProducts";
 
-function Home({ products }) {
+function Home({ products, loading }) {
   return (
     <>
-      <GetAllProducts products={products} />
+      <GetAllProducts products={products} loading={loading} />
     </>
   );
 }

@@ -11,6 +11,7 @@ import React from "react";
 
 function App() {
   const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(
     localStorage.getItem("capstone-token") || null
   );
@@ -21,6 +22,7 @@ function App() {
     async function getAllProducts() {
       const result = await fetchAllProducts();
       setProducts(result);
+      setLoading(false);
     }
     getAllProducts();
   }, []);
@@ -38,7 +40,10 @@ function App() {
       <div className="canvas">
         <div className="canvas-div">
           <Routes>
-            <Route path="/" element={<Home products={products} />} />
+            <Route
+              path="/"
+              element={<Home products={products} loading={loading} />}
+            />
             <Route
               path="/login"
               element={<Login token={token} setToken={setToken} />}
