@@ -4,6 +4,7 @@ import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 function Register({ token, setToken }) {
+  const [loading, setLoading] = useState(null);
   const [err, setErr] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +14,7 @@ function Register({ token, setToken }) {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    setLoading(true);
     // Create new user object
     const newUser = {
       email,
@@ -30,10 +32,12 @@ function Register({ token, setToken }) {
       // response && setErr(null);
       // response && localStorage.setItem("capstone-token", response.token);
       // setToken(response.token);
+      setLoading(false);
       navigate("/");
     } catch (error) {
       console.error(error);
       setErr("Wrong username or password. Please try again");
+      setLoading(false);
     }
   };
 
@@ -117,6 +121,7 @@ function Register({ token, setToken }) {
           </div>
         </div>
       </form>
+      {loading && <h3 className="loading">Authenticating, Please Wait....</h3>}
     </div>
   );
 }
