@@ -46,6 +46,7 @@ export default function SingleProduct({ products, cart, setCart }) {
               <p>
                 Ratings: {product.rating.rate} ⭐️ ({product.rating.count})
               </p>
+              <br />
               <div className="buttons2">
                 <div className="buttons1">
                   <div className="buttons">
