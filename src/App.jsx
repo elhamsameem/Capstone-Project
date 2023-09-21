@@ -5,6 +5,7 @@ import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import Cart from "./components/Cart.jsx";
+import SingleProduct from "./components/SingleProduct.jsx";
 import "./App.css";
 import { fetchAllProducts } from "./api/api.js";
 import React from "react";
@@ -43,6 +44,10 @@ function App() {
             <Route
               path="/"
               element={<Home products={products} loading={loading} />}
+            />
+            <Route
+              path="/products/:id"
+              element={<SingleProduct products={products} />}
             />
             <Route
               path="/login"

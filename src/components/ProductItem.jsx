@@ -32,7 +32,6 @@ function ProductItem({ product }) {
           {product.rating.rate} ⭐️ ({product.rating.count})
         </p>
       </div>
-      {/* <p>{product.description}</p> */}
       <div className="buttons">
         <button className="simple-button" onClick={() => {}}>
           Add to Cart
