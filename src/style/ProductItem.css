@@ -86,3 +86,20 @@
   font-weight: 600;
   box-shadow: 0px 0px 10px #2c7c50;
 }
+
+.remove-button {
+  padding: 0.4rem;
+  width: 6rem;
+  cursor: pointer;
+  color: white;
+  background-color: #861111;
+  border-radius: 7px;
+  border: none;
+  transition: all 0.1s linear;
+}
+
+.remove-button:hover {
+  width: 100%;
+  font-weight: 600;
+  box-shadow: 0px 0px 10px #861111;
+}

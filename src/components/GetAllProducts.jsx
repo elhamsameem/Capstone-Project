@@ -3,10 +3,14 @@ import { useState, useEffect } from "react";
 import "../style/GetAllProducts.css";
 import ProductItem from "./ProductItem";
 
-function GetAllProducts({ products, loading }) {
+function GetAllProducts({ products, loading, cart, setCart }) {
   const [category, setCategory] = useState("all");
   const [searchedProduct, setSearchedProduct] = useState("");
   const [titleText, setTitleText] = useState("All Products");
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   // Filtering products based on category selection
   const filteredCategory = products
@@ -19,8 +23,6 @@ function GetAllProducts({ products, loading }) {
   const filteredProducts = filteredCategory.filter((product) =>
     product.title.toLowerCase().includes(searchedProduct.toLowerCase())
   );
-
-  console.log(filteredProducts);
 
   return (
     <>
@@ -107,7 +109,14 @@ function GetAllProducts({ products, loading }) {
           <div className="all-products-div">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => {
-                return <ProductItem key={product.id} product={product} />;
+                return (
+                  <ProductItem
+                    key={product.id}
+                    product={product}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                );
               })
             ) : (
               <h1>Out of inventory</h1>

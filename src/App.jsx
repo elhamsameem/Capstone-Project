@@ -12,6 +12,7 @@ import React from "react";
 
 function App() {
   const [products, setProducts] = useState(null);
+  const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(
     localStorage.getItem("capstone-token") || null
@@ -37,17 +38,36 @@ function App() {
 
   return (
     <>
-      <NavBar token={token} setToken={setToken} handleLogout={handleLogout} />
+      <NavBar
+        token={token}
+        setToken={setToken}
+        handleLogout={handleLogout}
+        cart={cart}
+        setCart={setCart}
+      />
       <div className="canvas">
         <div className="canvas-div">
           <Routes>
             <Route
               path="/"
-              element={<Home products={products} loading={loading} />}
+              element={
+                <Home
+                  products={products}
+                  loading={loading}
+                  cart={cart}
+                  setCart={setCart}
+                />
+              }
             />
             <Route
               path="/products/:id"
-              element={<SingleProduct products={products} />}
+              element={
+                <SingleProduct
+                  products={products}
+                  cart={cart}
+                  setCart={setCart}
+                />
+              }
             />
             <Route
               path="/login"
@@ -57,7 +77,10 @@ function App() {
               path="/register"
               element={<Register token={token} setToken={setToken} />}
             />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/cart"
+              element={<Cart cart={cart} setCart={setCart} />}
+            />
           </Routes>
         </div>
       </div>
