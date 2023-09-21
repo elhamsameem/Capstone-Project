@@ -8,7 +8,7 @@ function ProductItem({ product, cart, setCart }) {
     cart.find((item) => item.id === product.id)
   );
 
-  const handleClick = () => {
+  const handleAddClick = () => {
     if (inCart) {
       const newItems = cart.filter((item) => item.id !== product.id);
       setCart(newItems);
@@ -16,8 +16,8 @@ function ProductItem({ product, cart, setCart }) {
       setCart((prevItems) => {
         return [...prevItems, product];
       });
-      // Toggle button which switches the button details
     }
+    // Toggle button which switches the button details
     setInCart(!inCart);
   };
 
@@ -57,7 +57,7 @@ function ProductItem({ product, cart, setCart }) {
           className={inCart ? "remove-button" : "simple-button"}
           onClick={(e) => {
             e.preventDefault();
-            handleClick();
+            handleAddClick();
           }}
         >
           {inCart ? "Remove" : "Add to Cart"}
