@@ -23,6 +23,11 @@
   color: black;
 }
 
+.cart-link {
+  width: 54px;
+  height: 23px;
+}
+
 .nav-links-div a:hover,
 .active {
   box-shadow: 0 0 10px white;
@@ -34,7 +39,7 @@
 .cart-qty {
   background-color: rgb(209, 2, 2);
   color: white;
-  font-size: x-small;
+  font-size: xx-small;
   padding: 4px;
   margin: 0;
   border-radius: 90%;

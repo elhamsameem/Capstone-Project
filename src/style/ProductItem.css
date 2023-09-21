@@ -78,7 +78,7 @@
   background-color: #2c7c50;
   border-radius: 7px;
   border: none;
-  transition: all 0.1s linear;
+  transition: width 0.1s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 .simple-button:hover {
@@ -95,7 +95,7 @@
   background-color: #861111;
   border-radius: 7px;
   border: none;
-  transition: all 0.1s linear;
+  transition: width 0.1s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 .remove-button:hover {

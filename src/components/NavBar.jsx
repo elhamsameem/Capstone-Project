@@ -15,7 +15,7 @@ function NavBar({ token, setToken, handleLogout, cart, setCart }) {
         ) : (
           <NavLink to={"/login"}>Login</NavLink>
         )}
-        <NavLink to={"/cart"}>
+        <NavLink to={"/cart"} className={"cart-link"}>
           Cart
           {cart.length > 0 && <sub className="cart-qty">{cart.length}</sub>}
         </NavLink>
