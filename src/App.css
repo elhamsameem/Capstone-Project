@@ -10,8 +10,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* max-width: 1400px; */
-  width: 80%;
-  /* height: 100%; */
-  padding-top: 2rem;
+  max-width: 1400px;
+  padding: 2rem;
 }
