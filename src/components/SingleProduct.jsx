@@ -3,7 +3,7 @@ import "../style/SingleProduct.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function SingleProduct({ products }) {
+export default function SingleProduct({ products, cart, setCart }) {
   const params = useParams();
   const item = products
     ? products.filter((product) => product.id === Number(params.id))
@@ -11,9 +11,26 @@ export default function SingleProduct({ products }) {
 
   const product = item[0];
 
+  const [inCart, setInCart] = useState(
+    cart.find((item) => item.id === product.id)
+  );
+
+  const handleAddClick = () => {
+    if (inCart) {
+      const newItems = cart.filter((item) => item.id !== product.id);
+      setCart(newItems);
+    } else {
+      setCart((prevItems) => {
+        return [...prevItems, product];
+      });
+    }
+    // Toggle button which switches the button details
+    setInCart(!inCart);
+  };
+
   return (
     <>
-      {product && (
+      {product ? (
         <div className="single-product-container">
           <div className="single-product-div">
             <div className="single-product-img-div">
@@ -32,8 +49,14 @@ export default function SingleProduct({ products }) {
               <div className="buttons2">
                 <div className="buttons1">
                   <div className="buttons">
-                    <button className="simple-button" onClick={() => {}}>
-                      Add to Cart
+                    <button
+                      className={inCart ? "remove-button" : "simple-button"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleAddClick();
+                      }}
+                    >
+                      {inCart ? "Remove" : "Add to Cart"}
                     </button>
                   </div>
                 </div>
@@ -41,6 +64,8 @@ export default function SingleProduct({ products }) {
             </div>
           </div>
         </div>
+      ) : (
+        <h1 className="loading">Loading...</h1>
       )}
     </>
   );

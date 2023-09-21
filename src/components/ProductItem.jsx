@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/ProductItem.css";
 
-function ProductItem({ product }) {
+function ProductItem({ product, cart, setCart }) {
   const navigate = useNavigate();
+  const [inCart, setInCart] = useState(
+    cart.find((item) => item.id === product.id)
+  );
+
+  const handleAddClick = () => {
+    if (inCart) {
+      const newItems = cart.filter((item) => item.id !== product.id);
+      setCart(newItems);
+    } else {
+      setCart((prevItems) => {
+        return [...prevItems, product];
+      });
+    }
+    // Toggle button which switches the button details
+    setInCart(!inCart);
+  };
 
   return (
     <div className="product-div">
@@ -14,7 +30,11 @@ function ProductItem({ product }) {
         }}
         title="View Product"
       >
-        <img className="product-img" src={`${product.image}`}></img>
+        {product.image ? (
+          <img className="product-img" src={`${product.image}`}></img>
+        ) : (
+          <h4>Loading Image...</h4>
+        )}
       </div>
       <div className="product-title">
         <h3
@@ -33,8 +53,14 @@ function ProductItem({ product }) {
         </p>
       </div>
       <div className="buttons">
-        <button className="simple-button" onClick={() => {}}>
-          Add to Cart
+        <button
+          className={inCart ? "remove-button" : "simple-button"}
+          onClick={(e) => {
+            e.preventDefault();
+            handleAddClick();
+          }}
+        >
+          {inCart ? "Remove" : "Add to Cart"}
         </button>
       </div>
     </div>

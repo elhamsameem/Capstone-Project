@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../style/NavBar.css";
 
-function NavBar({ token, setToken, handleLogout }) {
+function NavBar({ token, setToken, handleLogout, cart, setCart }) {
   return (
     <div className="nav-bar-div">
       <h1 className="title">Capstone Project</h1>
@@ -15,7 +15,10 @@ function NavBar({ token, setToken, handleLogout }) {
         ) : (
           <NavLink to={"/login"}>Login</NavLink>
         )}
-        <NavLink to={"/cart"}>My Cart</NavLink>
+        <NavLink to={"/cart"} className={"cart-link"}>
+          Cart
+          {cart.length > 0 && <sub className="cart-qty">{cart.length}</sub>}
+        </NavLink>
       </div>
     </div>
   );

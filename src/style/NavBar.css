@@ -23,10 +23,24 @@
   color: black;
 }
 
+.cart-link {
+  width: 54px;
+  height: 23px;
+}
+
 .nav-links-div a:hover,
 .active {
   box-shadow: 0 0 10px white;
   border-radius: 5px;
   background-color: rgba(155, 155, 160, 0.633);
   transition: all 0.2s ease;
+}
+
+.cart-qty {
+  background-color: rgb(209, 2, 2);
+  color: white;
+  font-size: xx-small;
+  padding: 4px;
+  margin: 0;
+  border-radius: 90%;
 }
