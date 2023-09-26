@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../style/Login.css";
 import { loginUser } from "../api/api";
 
-function Login({ token, setToken, setUser }) {
+function Login({ token, setToken, setUser, setCart }) {
   const [err, setErr] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +21,8 @@ function Login({ token, setToken, setUser }) {
       setToken(response.token);
       setUser(username);
       localStorage.setItem("capstone-user", username);
+      // Update cart items based on logged in user
+      setCart(JSON.parse(localStorage.getItem(`${username}-cart`)) || []);
       setLoading(false);
       navigate("/");
     } catch (error) {
