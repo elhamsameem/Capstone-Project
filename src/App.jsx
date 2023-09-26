@@ -92,7 +92,12 @@ function App() {
             <Route
               path="/login"
               element={
-                <Login token={token} setToken={setToken} setUser={setUser} />
+                <Login
+                  token={token}
+                  setToken={setToken}
+                  setUser={setUser}
+                  setCart={setCart}
+                />
               }
             />
             <Route
