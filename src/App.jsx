@@ -12,12 +12,30 @@ import React from "react";
 
 function App() {
   const [products, setProducts] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [user, setUser] = useState(
+    localStorage.getItem("capstone-user") || "guest"
+  );
+  const [cart, setCart] = useState(
+    // parsing and pulling cart info from local storage if exist
+    JSON.parse(localStorage.getItem(`${user}-cart`)) || []
+  );
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(
     localStorage.getItem("capstone-token") || null
   );
   const navigate = useNavigate();
+
+  // side effect for cart items to update based on loged in user
+  useEffect(() => {
+    console.log("User changed", user);
+    // parsing and pulling cart info from local storage if exist
+    setCart(JSON.parse(localStorage.getItem(`${user}-cart`)) || []);
+  }, [user]);
+
+  // Side effect for cart when user adds or remove anything it will save it to local storage
+  useEffect(() => {
+    localStorage.setItem(`${user}-cart`, JSON.stringify(cart));
+  }, [cart]);
 
   // Fetching all products in app level component
   useEffect(() => {
@@ -33,6 +51,8 @@ function App() {
   function handleLogout() {
     localStorage.removeItem("capstone-token");
     setToken(null);
+    setUser("guest");
+    localStorage.setItem("capstone-user", "guest");
     navigate("/login");
   }
 
@@ -71,7 +91,9 @@ function App() {
             />
             <Route
               path="/login"
-              element={<Login token={token} setToken={setToken} />}
+              element={
+                <Login token={token} setToken={setToken} setUser={setUser} />
+              }
             />
             <Route
               path="/register"

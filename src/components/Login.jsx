@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../style/Login.css";
 import { loginUser } from "../api/api";
 
-function Login({ token, setToken }) {
+function Login({ token, setToken, setUser }) {
   const [err, setErr] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +19,8 @@ function Login({ token, setToken }) {
       response && setErr(null);
       response && localStorage.setItem("capstone-token", response.token);
       setToken(response.token);
+      setUser(username);
+      localStorage.setItem("capstone-user", username);
       setLoading(false);
       navigate("/");
     } catch (error) {
