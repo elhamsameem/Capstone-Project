@@ -8,23 +8,26 @@ export default function SingleProduct({ products, cart, setCart }) {
   const item = products
     ? products.filter((product) => product.id === Number(params.id))
     : [];
-
+  // this will destructure the array and will assign the first index to product var
   const product = item[0];
 
+  // Check if item is already in the cart
   const [inCart, setInCart] = useState(
     cart.find((item) => item.id === product.id)
   );
 
-  const handleAddClick = () => {
+  const handleClick = () => {
+    // If item is already in cart, button will change to Remove and will remove the item from cart
     if (inCart) {
       const newItems = cart.filter((item) => item.id !== product.id);
       setCart(newItems);
     } else {
+      // If item is not in cart then add item in the cart
       setCart((prevItems) => {
         return [...prevItems, product];
       });
     }
-    // Toggle button which switches the button details
+    // Toggle button which switches the button details from Add to Remove or vice versa
     setInCart(!inCart);
   };
 
@@ -32,6 +35,11 @@ export default function SingleProduct({ products, cart, setCart }) {
     <>
       {product ? (
         <div className="single-product-container">
+          <div className="back-button-div">
+            <button className="back-button" onClick={() => history.back()}>
+              {"Back"}
+            </button>
+          </div>
           <div className="single-product-div">
             <div className="single-product-img-div">
               <img className="single-product-img" src={product.image} alt="" />
@@ -54,7 +62,7 @@ export default function SingleProduct({ products, cart, setCart }) {
                       className={inCart ? "remove-button" : "simple-button"}
                       onClick={(e) => {
                         e.preventDefault();
-                        handleAddClick();
+                        handleClick();
                       }}
                     >
                       {inCart ? "Remove" : "Add to Cart"}
