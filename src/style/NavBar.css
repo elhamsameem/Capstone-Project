@@ -26,6 +26,7 @@
 .cart-link {
   width: 54px;
   height: 23px;
+  text-align: center;
 }
 
 .nav-links-div a:hover,

@@ -8,10 +8,6 @@ function GetAllProducts({ products, loading, cart, setCart }) {
   const [searchedProduct, setSearchedProduct] = useState("");
   const [titleText, setTitleText] = useState("All Products");
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
   // Filtering products based on category selection
   const filteredCategory = products
     ? category === "all" // if category is all then return products

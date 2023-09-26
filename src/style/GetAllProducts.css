@@ -10,10 +10,11 @@
 
 .cat-title {
   margin-bottom: 1.5rem;
+  width: 15rem;
 }
 
 .filter-div {
-  width: 100%;
+  width: 1400px;
   display: flex;
   justify-content: space-around;
   align-items: center;
