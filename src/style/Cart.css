@@ -101,3 +101,37 @@
   box-shadow: 0px 0px 10px #861111;
   font-size: x-large;
 }
+
+.checkout-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* box-shadow: 0 0 10px rgba(155, 155, 160, 0.778); */
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.checkout-button-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 3pt solid black; */
+}
+
+.checkout-button-div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.checkout-button {
+  width: 15rem;
+}
+
+.grand-total-div {
+  width: 15rem;
+  margin-right: 1rem;
+  /* border: 3pt solid black; */
+}
