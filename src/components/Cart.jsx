@@ -4,9 +4,41 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart({ cart, setCart }) {
   const navigate = useNavigate();
+
+  // Function to open items in cart in single product view.
   const openItem = (id) => {
     navigate(`/products/${id}`);
   };
+
+  // Function to increase item quantity in the cart
+  function increaseQty(targetItem) {
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        return item.id === targetItem.id
+          ? {
+              ...item,
+              quantity: item.quantity ? item.quantity + 1 : 1,
+            }
+          : item;
+      });
+    });
+  }
+
+  // Function to decrease item quantity in the cart
+  function decreaseQty(targetItem) {
+    setCart((prevCart) => {
+      return prevCart.map((item) => {
+        return item.id === targetItem.id
+          ? {
+              ...item,
+              quantity:
+                item.quantity && item.quantity > 1 ? item.quantity - 1 : 1,
+            }
+          : item;
+      });
+    });
+  }
+
   console.log(cart);
 
   return (
@@ -28,7 +60,23 @@ export default function Cart({ cart, setCart }) {
               <p className="cart-item-price">${item.price}</p>
               <div className="cart-item-qty-div">
                 QTY:
-                <button>+</button>5<button>-</button>
+                <button
+                  className="increament-button qty-buttons"
+                  onClick={() => {
+                    increaseQty(item);
+                  }}
+                >
+                  +
+                </button>
+                <p className="item-qty">{item.quantity}</p>
+                <button
+                  className="decreament-button qty-buttons"
+                  onClick={() => {
+                    decreaseQty(item);
+                  }}
+                >
+                  -
+                </button>
               </div>
               <div className="button-div">
                 <button
@@ -43,7 +91,9 @@ export default function Cart({ cart, setCart }) {
                   Remove
                 </button>
               </div>
-              <h4 className="cart-item-subtotal">Total: ${item.price * 5}</h4>
+              <h4 className="cart-item-subtotal">
+                Total: ${(item.price * item.quantity).toFixed(2)}
+              </h4>
             </div>
           );
         })

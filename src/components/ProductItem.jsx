@@ -10,11 +10,16 @@ function ProductItem({ product, cart, setCart }) {
 
   const handleAddClick = () => {
     if (inCart) {
+      // If item is already in cart, remove it
       const newItems = cart.filter((item) => item.id !== product.id);
       setCart(newItems);
     } else {
       setCart((prevItems) => {
-        return [...prevItems, product];
+        const productToAdd = {
+          ...product,
+          quantity: product.quantity || 1,
+        };
+        return [...prevItems, productToAdd];
       });
     }
     // Toggle button which switches the button details

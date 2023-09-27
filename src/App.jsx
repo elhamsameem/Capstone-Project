@@ -27,7 +27,6 @@ function App() {
 
   // side effect for cart items to update based on loged in user
   useEffect(() => {
-    console.log("User changed", user);
     // parsing and pulling cart info from local storage if exist
     setCart(JSON.parse(localStorage.getItem(`${user}-cart`)) || []);
   }, [user]);
