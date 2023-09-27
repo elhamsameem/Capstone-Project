@@ -3,6 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../style/NavBar.css";
 
 function NavBar({ token, setToken, handleLogout, cart, setCart }) {
+  // Cart quantity, initially set to 0
+  let cartQTY = 0;
+  cartQTY = cart.map((item) => cartQTY + Number(item.quantity));
+  cartQTY = cartQTY.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+
   return (
     <div className="nav-bar-div">
       <h1 className="title">Capstone Project</h1>
@@ -17,7 +25,7 @@ function NavBar({ token, setToken, handleLogout, cart, setCart }) {
         )}
         <NavLink to={"/cart"} className={"cart-link"}>
           Cart
-          {cart.length > 0 && <sub className="cart-qty">{cart.length}</sub>}
+          {cart.length > 0 && <sub className="cart-qty">{cartQTY}</sub>}
         </NavLink>
       </div>
     </div>
