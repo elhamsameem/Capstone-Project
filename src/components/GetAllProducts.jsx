@@ -27,13 +27,10 @@ function GetAllProducts({ products, loading, cart, setCart }) {
 
   // Sorting products based on price
   if (sortPrice === "asc") {
-    console.log("asc has run");
     filteredProducts.sort((a, b) => a.price - b.price);
   } else if (sortPrice === "desc") {
     filteredProducts.sort((a, b) => b.price - a.price);
   }
-
-  console.log(sortPrice);
 
   return (
     <>
