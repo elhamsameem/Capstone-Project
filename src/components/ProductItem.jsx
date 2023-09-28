@@ -14,6 +14,8 @@ function ProductItem({ product, cart, setCart }) {
       const newItems = cart.filter((item) => item.id !== product.id);
       setCart(newItems);
     } else {
+      // If item is not in cart then add item in the cart
+
       setCart((prevItems) => {
         const productToAdd = {
           ...product,

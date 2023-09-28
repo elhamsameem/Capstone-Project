@@ -24,7 +24,11 @@ export default function SingleProduct({ products, cart, setCart }) {
     } else {
       // If item is not in cart then add item in the cart
       setCart((prevItems) => {
-        return [...prevItems, product];
+        const productToAdd = {
+          ...product,
+          quantity: product.quantity || 1,
+        };
+        return [...prevItems, productToAdd];
       });
     }
     // Toggle button which switches the button details from Add to Remove or vice versa
