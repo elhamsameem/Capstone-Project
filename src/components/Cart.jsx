@@ -112,7 +112,10 @@ export default function Cart({ cart, setCart }) {
           <div className="checkout-div">
             <div className="checkout-button-div">
               <div className="checkout-button-div2">
-                <button className="simple-button checkout-button">
+                <button
+                  className="simple-button checkout-button"
+                  onClick={() => alert("Thank you for shopping with us!")}
+                >
                   Procceed to Checkout
                 </button>
               </div>
