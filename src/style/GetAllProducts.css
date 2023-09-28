@@ -1,20 +1,18 @@
 .all-products-div {
-  /* padding: 1rem; */
   margin-bottom: 3rem;
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
+  width: 1200px;
 }
 
 .cat-title {
   margin-bottom: 1.5rem;
-  width: 15rem;
 }
 
 .filter-div {
-  width: 1400px;
+  width: 1200px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -26,11 +24,19 @@
 }
 
 #search-product-input {
-  padding: 0.3rem;
+  padding: 0.4rem;
   margin-left: 0.3rem;
   box-shadow: 0 0 10px rgba(155, 155, 160, 0.778);
   border: none;
   width: 15rem;
+}
+
+#sort-price {
+  padding: 0.4rem;
+  box-shadow: 0 0 10px rgba(155, 155, 160, 0.778);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .category {

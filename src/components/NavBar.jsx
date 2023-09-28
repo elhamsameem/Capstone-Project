@@ -13,7 +13,7 @@ function NavBar({ token, setToken, handleLogout, cart, setCart }) {
 
   return (
     <div className="nav-bar-div">
-      <h1 className="title">Capstone Project</h1>
+      <h1 className="title">Project Capstone</h1>
       <div className="nav-links-div">
         <NavLink to={"/"}>Home</NavLink>
         {token ? (
