@@ -106,7 +106,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* box-shadow: 0 0 10px rgba(155, 155, 160, 0.778); */
   margin: 1rem;
   padding: 1rem;
 }
@@ -116,7 +115,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 3pt solid black; */
 }
 
 .checkout-button-div2 {
@@ -133,5 +131,4 @@
 .grand-total-div {
   width: 15rem;
   margin-right: 1rem;
-  /* border: 3pt solid black; */
 }

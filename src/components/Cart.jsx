@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/Cart.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart({ cart, setCart }) {
+  const [grandTotal, setGrandTotal] = useState(0);
   const navigate = useNavigate();
 
   // Function to open items in cart in single product view.
@@ -39,7 +40,14 @@ export default function Cart({ cart, setCart }) {
     });
   }
 
-  console.log(cart);
+  // Side effect to calculate the grand total when the cart changes
+  useEffect(() => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.price * item.quantity;
+    });
+    setGrandTotal(total);
+  }, [cart]);
 
   return (
     <div className="cart-canvas">
@@ -110,7 +118,9 @@ export default function Cart({ cart, setCart }) {
               </div>
             </div>
             <div className="grand-total-div">
-              <h3 className="grand-total">{`Grand Total: $9865498`}</h3>
+              <h3 className="grand-total">{`Grand Total: $${grandTotal.toFixed(
+                2
+              )}`}</h3>
             </div>
           </div>
         </>

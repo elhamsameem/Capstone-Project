@@ -7,6 +7,7 @@ function GetAllProducts({ products, loading, cart, setCart }) {
   const [category, setCategory] = useState("all");
   const [searchedProduct, setSearchedProduct] = useState("");
   const [titleText, setTitleText] = useState("All Products");
+  const [sortPrice, setSortPrice] = useState("default");
 
   // Filtering products based on category selection
   const filteredCategory = products
@@ -19,6 +20,16 @@ function GetAllProducts({ products, loading, cart, setCart }) {
   const filteredProducts = filteredCategory.filter((product) =>
     product.title.toLowerCase().includes(searchedProduct.toLowerCase())
   );
+
+  // Sorting products based on price
+  if (sortPrice === "asc") {
+    console.log("asc has run");
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortPrice === "desc") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  }
+
+  console.log(sortPrice);
 
   return (
     <>
@@ -43,6 +54,18 @@ function GetAllProducts({ products, loading, cart, setCart }) {
                 }}
               />
             </div>
+            <div className="sort-price-div">
+              <label htmlFor="sort-price">Sort Price By: </label>
+              <select
+                name="sort-price"
+                id="sort-price"
+                onChange={(e) => setSortPrice(e.target.value)}
+              >
+                <option value="default">Default</option>
+                <option value="asc">Low to High</option>
+                <option value="desc">High to Low</option>
+              </select>
+            </div>
             <div className="category">
               <button
                 className={`cat-button ${
@@ -60,7 +83,7 @@ function GetAllProducts({ products, loading, cart, setCart }) {
                   category === "men's clothing" ? "active-button" : ""
                 }`}
                 onClick={() => {
-                  setTitleText("Men's");
+                  setTitleText("Men's Clothing");
                   setCategory(`men's clothing`);
                 }}
               >
@@ -71,7 +94,7 @@ function GetAllProducts({ products, loading, cart, setCart }) {
                   category === "women's clothing" ? "active-button" : ""
                 }`}
                 onClick={() => {
-                  setTitleText("Women's");
+                  setTitleText("Women's Clothing");
                   setCategory(`women's clothing`);
                 }}
               >
