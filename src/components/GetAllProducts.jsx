@@ -17,8 +17,12 @@ function GetAllProducts({ products, loading, cart, setCart }) {
     : [];
 
   // Filtering filtered category products by search bar text.
-  const filteredProducts = filteredCategory.filter((product) =>
-    product.title.toLowerCase().includes(searchedProduct.toLowerCase())
+  const filteredProducts = filteredCategory.filter(
+    (product) =>
+      product.description
+        .toLowerCase()
+        .includes(searchedProduct.toLocaleLowerCase()) ||
+      product.title.toLowerCase().includes(searchedProduct.toLowerCase())
   );
 
   // Sorting products based on price
